@@ -5,20 +5,20 @@ import {console, Test} from "forge-std/Test.sol";
 import {UsdtToken} from "../src/UsdtToken.sol";
 import {SampleToken} from "../src/SampleToken.sol";
 import {TokenICO} from "../src/TokenICO.sol";
-import {DeployICO} from "../script/DeployICO.s.sol";
+import {DeployAll} from "../script/DeployAll.s.sol";
 
 contract IcoTest is Test {
     TokenICO public ico;
     UsdtToken public usdtToken;
     SampleToken public sampleToken;
-    DeployICO public deployer;
+    DeployAll public deployer;
 
     function setUp() public {
         // Deploy the tokens and ICO contract
         vm.prank(address(this));
-        deployer = new DeployICO();
+        deployer = new DeployAll();
 
-        (sampleToken, usdtToken, ico) = deployer.run();
+        (sampleToken, usdtToken, ico,) = deployer.run();
     }
 
     function testIco() public {
